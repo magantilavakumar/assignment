@@ -1,15 +1,23 @@
 package com.assignment.batch.entity;
 
-import java.sql.Date;
-
+/**
+ * @author magantilavakumar
+ *
+ */
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.springframework.stereotype.Indexed;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+
+@NamedQueries({
+	@NamedQuery(name = "CustomerTransaction.searchByCustomerId",query = "SELECT C FROM CustomerTransaction C WHERE customerID =?1"),
+	@NamedQuery(name = "CustomerTransaction.searchByAccountNo",query = "SELECT C FROM CustomerTransaction C WHERE accountNo =?1"),
+	@NamedQuery(name = "CustomerTransaction.searchByTrxDesc",query = "SELECT C FROM CustomerTransaction C WHERE transactionDesc =?1")
+})
 public class CustomerTransaction {
 	
 	@Id

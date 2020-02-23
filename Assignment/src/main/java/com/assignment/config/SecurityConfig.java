@@ -1,5 +1,10 @@
 package com.assignment.config;
 
+/**
+ * @author magantilavakumar
+ *
+ */
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 	@Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeRequests()
-		.antMatchers("/h2-console/**")
+		.antMatchers("/**")
         .permitAll()
         .anyRequest()
         .authenticated()
@@ -35,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
         .formLogin();
        
       httpSecurity.csrf()
-        .ignoringAntMatchers("/h2-console/**");
+        .ignoringAntMatchers("/**");
       httpSecurity.headers()
         .frameOptions()
         .sameOrigin();

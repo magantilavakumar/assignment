@@ -1,0 +1,18 @@
+schema{
+	query : Query
+}
+
+type Query{
+	customerID(id: String) : [CustomerID]
+	accountNo(id: Long) : [CustomerID]
+	transactionDesc(id: String) : [CustomerID]
+}
+
+type CustomerID{
+	accountNo : Long
+	transactionAmount : Float 
+	transactionDesc : String
+	transactionDate : String
+	transactionTime : String
+	customerID : String
+}

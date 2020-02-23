@@ -1,5 +1,8 @@
 package com.assignment.batch.components;
-
+/**
+ * @author magantilavakumar
+ *
+ */
 import java.util.List;
 
 import org.slf4j.Logger;

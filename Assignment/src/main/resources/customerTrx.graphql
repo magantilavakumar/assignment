@@ -6,6 +6,7 @@ type Query{
 	customerID(id: String) : [CustomerID]
 	accountNo(id: Long) : [CustomerID]
 	transactionDesc(id: String) : [CustomerID]
+	allCustomerTrx(skip: Int = 0,first: Int =0) : [CustomerID]
 }
 
 type CustomerID{

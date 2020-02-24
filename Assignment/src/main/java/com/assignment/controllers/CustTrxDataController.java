@@ -48,7 +48,7 @@ public class CustTrxDataController {
 	@Autowired
 	Job jobToDo;
 	
-	@RequestMapping(value = "/loadCustData")
+	@RequestMapping(value = "/private/loadCustData")
 	public BatchStatus loadCustomerInfo() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 		Map<String, JobParameter> mapParam = new HashMap();
 		mapParam.put("Time",new JobParameter(System.currentTimeMillis()));
@@ -58,8 +58,15 @@ public class CustTrxDataController {
 		return jobExecute.getStatus();
 	}
 	
-	@RequestMapping(value = "/getCustomerId",method = RequestMethod.POST)
+	@RequestMapping(value = "/private/getCustomerId",method = RequestMethod.POST)
 	public ResponseEntity<Object> getCustomerDetails(@RequestBody String query) {
+		log.info("Query:---"+query);
+		ExecutionResult executeResult =  graphQLService.getGraphQL().execute(query);
+		return new ResponseEntity<Object>(executeResult,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/public/getPagination",method = RequestMethod.POST)
+	public ResponseEntity<Object> getPaggination(@RequestBody String query) {
 		log.info("Query:---"+query);
 		ExecutionResult executeResult =  graphQLService.getGraphQL().execute(query);
 		return new ResponseEntity<Object>(executeResult,HttpStatus.OK);

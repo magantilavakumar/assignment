@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import com.assignment.services.fetchers.AllCustomerTransactionFetcher;
 import com.assignment.services.fetchers.CustomerAccountNoDataFetcher;
 import com.assignment.services.fetchers.CustomerIDDataFetcher;
+import com.assignment.services.fetchers.CustomerTrxDataFetcher;
 
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
@@ -42,8 +44,11 @@ public class GraphQLService {
 	@Autowired
 	private CustomerAccountNoDataFetcher custAccountNoDataFectcher;
 
-//	@Autowired
-//	private CustomerTrxDataFetcher custTrxdescDataFectcher;
+	@Autowired
+	private CustomerTrxDataFetcher custTrxdescDataFectcher;
+	
+	@Autowired
+	private AllCustomerTransactionFetcher allCustomerTrxFetcher;
 	
 	
 	@PostConstruct
@@ -65,7 +70,8 @@ public class GraphQLService {
 				.type("Query",typeWiring -> typeWiring
 													.dataFetcher("customerID", customerIDDataFectcher)
 													.dataFetcher("accountNo", custAccountNoDataFectcher)
-													//.dataFetcher("transactionDesc",custTrxdescDataFectcher)
+													.dataFetcher("transactionDesc",custTrxdescDataFectcher)
+													.dataFetcher("allCustomerTrx", allCustomerTrxFetcher)
 													)
 				.build();
 													

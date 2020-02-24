@@ -32,12 +32,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 	@Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeRequests()
-		.antMatchers("/**")
-        .permitAll()
-        .anyRequest()
+        .antMatchers("/private/**")
         .authenticated()
+        .antMatchers("/public/**")
+        .permitAll()
+        .antMatchers("/h2-console/**")
+        .permitAll()
         .and()
-        .formLogin();
+        .httpBasic();
+//		httpSecurity.authorizeRequests()
+//		.antMatchers("/**")
+//        .permitAll()
+//        .anyRequest()
+//        .authenticated()
+//        .and()
+//        .formLogin();
        
       httpSecurity.csrf()
         .ignoringAntMatchers("/**");

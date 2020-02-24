@@ -11,12 +11,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.assignment")
-public class TestApplication {
+public class AssignmentApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(TestApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(AssignmentApplication.class);
 	public static void main(String[] args) {
 		log.info("You are in TestApplicaiton");
-		SpringApplication.run(TestApplication.class, args);		
+		SpringApplication.run(AssignmentApplication.class, args);		
 	}
 
 }

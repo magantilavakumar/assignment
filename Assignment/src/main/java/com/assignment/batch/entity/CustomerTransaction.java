@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 @Entity
 
@@ -18,16 +19,29 @@ import javax.persistence.NamedQuery;
 	@NamedQuery(name = "CustomerTransaction.searchByAccountNo",query = "SELECT C FROM CustomerTransaction C WHERE accountNo =?1"),
 	@NamedQuery(name = "CustomerTransaction.searchByTrxDesc",query = "SELECT C FROM CustomerTransaction C WHERE transactionDesc =?1")
 })
+
 public class CustomerTransaction {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@NotNull
 	private Long accountNo;
+	
+	@NotNull
 	private double transactionAmount;
+	
+	@NotNull
 	private String transactionDesc;
+	
+	@NotNull
 	private String transactionDate;
+	
+	@NotNull
 	private String transactionTime;
+	
+	@NotNull
 	private String customerID;
 	
 	public CustomerTransaction() {
